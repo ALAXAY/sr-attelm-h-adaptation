@@ -1,6 +1,6 @@
 # SR-AttELM-H: двомасштабне уточнення вихідного шару в процесі причинного відновлення асинхронно доставлених даних сенсорів
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ALAXAY/sr-attelm-h-adaptation/blob/main/notebooks/SR_AttELM_H_adaptation_Colab.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ALAXAY/sr-attelm-h-adaptation/blob/main/notebooks/SR_AttELM_H_adaptation_Colab.ipynb) [![DOI](https://zenodo.org/badge/1430261396.svg)](https://doi.org/10.5281/zenodo.23579401)
 
 Код до статті «Causal reconstruction of asynchronously delivered sensor data under changing arrival-delay regimes: availability-aware attention with two-time-scale online refinement of a sector-structured output layer» (О. Д. Фесенко, рукопис, 2026).
 
@@ -166,4 +166,5 @@ GNU GPL 3.0, тому зазначена папка поширюється на 
 
 ## Цитування
 
-Дані для цитування наведено у файлі `CITATION.cff`. DOI релізу в Zenodo буде додано після архівування.
+Версію 1.0.0 заархівовано в Zenodo: https://doi.org/10.5281/zenodo.23579402 (усі версії: https://doi.org/10.5281/zenodo.23579401).
+Дані для цитування наведено у файлі `CITATION.cff`.

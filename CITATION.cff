@@ -10,8 +10,16 @@ authors:
     email: "oleksij.fesenko@viti.edu.ua"
 repository-code: "https://github.com/ALAXAY/sr-attelm-h-adaptation"
 url: "https://github.com/ALAXAY/sr-attelm-h-adaptation"
+doi: "10.5281/zenodo.23579401"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.23579401"
+    description: "Zenodo concept DOI (all versions)"
+  - type: doi
+    value: "10.5281/zenodo.23579402"
+    description: "Zenodo DOI of version 1.0.0"
 version: "1.0.0"
-date-released: "2026-10-22"
+date-released: "2026-10-23"
 license:
   - Apache-2.0
   - GPL-3.0-only

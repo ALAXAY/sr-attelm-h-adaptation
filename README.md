@@ -1,6 +1,6 @@
 # SR-AttELM-H: two-time-scale online refinement for causal reconstruction under changing arrival-delay regimes
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ALAXAY/sr-attelm-h-adaptation/blob/main/notebooks/SR_AttELM_H_adaptation_Colab.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ALAXAY/sr-attelm-h-adaptation/blob/main/notebooks/SR_AttELM_H_adaptation_Colab.ipynb) [![DOI](https://zenodo.org/badge/1430261396.svg)](https://doi.org/10.5281/zenodo.23579401)
 
 Code for the article "Causal reconstruction of asynchronously delivered sensor data under changing arrival-delay regimes: availability-aware attention with two-time-scale online refinement of a sector-structured output layer" (O. Fesenko, manuscript, 2026). Ukrainian description: [README_UA.md](README_UA.md).
 
@@ -153,4 +153,5 @@ terms of the UCI Machine Learning Repository (https://doi.org/10.24432/C5RK5G).
 
 ## Citation
 
-Citation metadata are given in `CITATION.cff`. The Zenodo DOI of the release will be added here after archiving.
+Version 1.0.0 is archived in Zenodo: https://doi.org/10.5281/zenodo.23579402 (all versions: https://doi.org/10.5281/zenodo.23579401).
+Citation metadata are given in `CITATION.cff`.
