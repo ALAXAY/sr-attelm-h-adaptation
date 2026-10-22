@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the article and this repository."
+title: "SR-AttELM-H with two-time-scale online refinement: causal reconstruction of asynchronously delivered sensor data under changing arrival-delay regimes"
+type: software
+authors:
+  - family-names: Fesenko
+    given-names: Oleksii
+    orcid: "https://orcid.org/0000-0002-2114-5327"
+    affiliation: "Kruty Heroes Military Institute of Telecommunications and Information Technology"
+    email: "oleksij.fesenko@viti.edu.ua"
+repository-code: "https://github.com/ALAXAY/sr-attelm-h-adaptation"
+url: "https://github.com/ALAXAY/sr-attelm-h-adaptation"
+version: "1.0.0"
+date-released: "2026-10-22"
+license:
+  - Apache-2.0
+  - GPL-3.0-only
+keywords:
+  - online adaptation
+  - recursive least squares
+  - asynchronous data fusion
+  - age of information
+  - spatiotemporal attention
+  - extreme learning machine
+references:
+  - type: software
+    title: "SR-AttELM-H: technique for adaptive reconstruction of asynchronously delivered sensor data"
+    authors:
+      - family-names: Fesenko
+        given-names: Oleksii
+    version: "1.0.0"
+    doi: "10.5281/zenodo.22975926"
+    repository-code: "https://github.com/ALAXAY/sr-attelm-h"
