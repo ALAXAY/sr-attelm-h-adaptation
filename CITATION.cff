@@ -18,6 +18,9 @@ identifiers:
   - type: doi
     value: "10.5281/zenodo.23579402"
     description: "Zenodo DOI of version 1.0.0"
+  - type: doi
+    value: "10.5281/zenodo.23672599"
+    description: "Zenodo DOI of version 1.1.0"
 version: "1.1.0"
 date-released: "2026-10-26"
 license:

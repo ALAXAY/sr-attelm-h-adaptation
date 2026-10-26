@@ -195,5 +195,5 @@ terms of the UCI Machine Learning Repository (https://doi.org/10.24432/C5RK5G).
 
 ## Citation
 
-Version 1.0.0 is archived in Zenodo: https://doi.org/10.5281/zenodo.23579402 (all versions: https://doi.org/10.5281/zenodo.23579401).
+Version 1.1.0 is archived in Zenodo: https://doi.org/10.5281/zenodo.23672599; version 1.0.0: https://doi.org/10.5281/zenodo.23579402 (all versions: https://doi.org/10.5281/zenodo.23579401).
 Citation metadata are given in `CITATION.cff`.
