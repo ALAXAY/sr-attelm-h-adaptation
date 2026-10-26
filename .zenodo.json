@@ -1,7 +1,7 @@
 {
   "title": "SR-AttELM-H with two-time-scale online refinement: causal reconstruction of asynchronously delivered sensor data under changing arrival-delay regimes",
   "upload_type": "software",
-  "description": "Code of the article on causal reconstruction of asynchronously delivered sensor data under changing arrival-delay regimes: evaluation protocol with generation and arrival times, availability-aware spatiotemporal attention with a sector-structured recurrent extreme learning machine, two-time-scale online refinement of the output layer (per-source offset with fast forgetting and sector-wise recursive least squares with slow forgetting), the adaptation experiment, adapted reproductions of GRU-D, BRITS, SAITS and GRIN, an adapter of the official AGG core, a packet-level network delay model, result tables, a Google Colab notebook and a Lean 4 file with a formal check of the expressions of the article.",
+  "description": "Code of the article on causal reconstruction of asynchronously delivered sensor data under changing arrival-delay regimes: evaluation protocol with generation and arrival times, availability-aware spatiotemporal attention with a sector-structured recurrent extreme learning machine, two-time-scale online refinement of the output layer (per-source offset with fast forgetting and sector-wise recursive least squares with slow forgetting), the adaptation experiment, adapted reproductions of GRU-D, BRITS, SAITS and GRIN, an adapter of the official AGG core, a packet-level network delay model, result tables, a Google Colab notebook and a Lean 4 file with a formal check of the expressions of the article. Version 1.1.0 applies the forgetting-factor selection on the stationary validation part (rule stat) to every refinement procedure in summary_adaptation.csv, keeps the selection with the doubled mean delay in separate *_shift columns, adds the comparison with sector RLS on the hidden state extended by a unit component, and adds experiment adapt_experiment4.py (fuzzy partition of the output layer and a global output matrix with the per-source offset).",
   "creators": [
     {
       "name": "Fesenko, Oleksii",
@@ -35,6 +35,6 @@
       "scheme": "url"
     }
   ],
-  "version": "1.0.0",
+  "version": "1.1.0",
   "access_right": "open"
 }

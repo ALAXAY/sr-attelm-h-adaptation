@@ -41,6 +41,7 @@ tables and a Lean 4 file with a formal check of expressions (1)–(36).
 |---|---|---|---|
 | Quick check | `srattelm/check_reproduction.py` | console | about 2 min |
 | Experiment 3: adaptation of the output layer (Tables 9–12, Fig. 5) | `adapt_experiment.py`, `adapt_experiment2.py`, `adapt_experiment3.py`, `summarize_adaptation.py` | `results_adaptation.csv`, `results_adaptation2.csv`, `results_adaptation3.csv`, `summary_adaptation.csv`, `paired_adaptation.csv` | about 20 min |
+| Experiment 3, follow-up (v1.1.0): fuzzy partition of the output layer, global RLS with offset | `adapt_experiment4.py`, `summarize_adaptation4.py` | `adaptation4/`, `summary_adaptation4.csv`, `paired_adaptation4.csv`, `selected_adaptation4.json` | about 16 min with two parallel processes |
 | Experiment 1: comparison with existing methods (Tables 6, 7, Fig. 4) | `baselines.py`, `agg/run_agg.py`, `summarize_methods.py` | `results_baselines.csv`, `results_official_agg.csv`, `summary_methods.csv`, `paired_methods.csv` | 26 min; AGG 20–25 min per split and delay model (12 threads) |
 | Experiment 2: contribution of the components (Table 8) | `run_experiments.py`, `run_component_check.py`, `summarize.py`, `summarize_components.py` | `results_geometric.csv`, `results_network.csv`, `results_component_check.csv`, `summary_network.csv`, `availability_check_summary.csv` | about 6 min for `run_experiments.py` |
 | Delay statistics (Table 4, Section 7.1, Fig. 3) | `netsim/delay_statistics.py`, `netsim/make_figure.py` | `netsim/out/` | below 1 min |
@@ -68,6 +69,8 @@ python adapt_experiment.py       # experiment 3: frozen layer, global RLS, secto
 python adapt_experiment2.py      # experiment 3: two-time-scale refinement, output layer with intercept
 python adapt_experiment3.py      # experiment 3: sensitivity to lambda_b
 python summarize_adaptation.py   # Tables 9-12
+python adapt_experiment4.py      # follow-up: fuzzy partition, global RLS + offset (v1.1.0)
+python summarize_adaptation4.py
 python baselines.py              # experiment 1: GRU-D, BRITS, SAITS, GRIN
 python agg/run_agg.py            # experiment 1: official AGG core (optional)
 python summarize_methods.py      # Tables 6, 7
@@ -105,14 +108,15 @@ The technique with the two-time-scale refinement had a lower RMSE than every exi
 and 14.17%. The official AGG core was not evaluated in regime ×8.
 
 Table 2. Pooled RMSE for models trained on geometric delays, by coverage of the preliminary stage, test regime and
-refinement procedure (`summary_adaptation.csv`); κ is the share of the accuracy loss of the single-level model
-recovered by the refinement, expression (36)
+refinement procedure (`summary_adaptation.csv`; the forgetting factors of all procedures are selected on the stationary
+validation part, rule `stat`); κ is the share of the accuracy loss of the single-level model recovered by the
+refinement, expression (36)
 
 | Preliminary stage | Test regime | LOCF | Frozen output layer | Sector RLS alone | Per-source offset alone | Two-time-scale refinement | κ of the two-time-scale refinement, % |
 |---|---|---|---|---|---|---|---|
 | delay level 1 | geometric ×4 | 0.5430 | 0.3305 | 0.3192 | 0.3185 | 0.3118 | 52 |
 | delay level 1 | geometric ×8 | 0.7300 | 0.4310 | 0.4033 | 0.4103 | 0.3938 | 57 |
-| delay level 1 | network-derived | 0.7968 | 0.4782 | 0.4560 | 0.4675 | 0.4486 | 58 |
+| delay level 1 | network-derived | 0.7968 | 0.4782 | 0.4560 | 0.4673 | 0.4486 | 58 |
 | delay levels 1, 2, 4 | geometric ×4 | 0.5430 | 0.2945 | 0.2941 | 0.2872 | 0.2866 | – |
 | delay levels 1, 2, 4 | geometric ×8 | 0.7300 | 0.3653 | 0.3637 | 0.3545 | 0.3531 | – |
 | delay levels 1, 2, 4 | network-derived | 0.7968 | 0.4267 | 0.4214 | 0.4128 | 0.4106 | – |
@@ -121,6 +125,44 @@ Coverage of the delay regimes at the preliminary stage reduced the RMSE of the f
 10.8–15.3%. Under a regime not covered by the preliminary stage, the two-time-scale refinement
 recovered 52–58% of the accuracy loss, sector RLS alone 31–43% and the per-source offset alone
 21–33%.
+
+Table 3 (v1.1.0). Partition of the output layer with the per-source offset (λ_b = 0.99) in all three procedures;
+forgetting factor and membership parameters selected on the stationary validation part (`summary_adaptation4.csv`,
+`paired_adaptation4.csv`)
+
+| Preliminary stage | Test regime | Hard sectors + offset | One output matrix + offset | Fuzzy rules + offset |
+|---|---|---|---|---|
+| geometric, levels 1, 2, 4 | geometric ×4 | 0.2866 | 0.2877 | 0.2857 |
+| geometric, levels 1, 2, 4 | geometric ×8 | 0.3531 | 0.3548 | 0.3521 |
+| geometric, levels 1, 2, 4 | network-derived | 0.4106 | 0.4112 | 0.4078 |
+| geometric, level 1 | geometric ×4 | 0.3118 | 0.3119 | 0.3102 |
+| geometric, level 1 | geometric ×8 | 0.3938 | 0.3944 | 0.3907 |
+| geometric, level 1 | network-derived | 0.4486 | 0.4481 | 0.4433 |
+| network, levels 1, 2, 4 | network-derived | 0.3884 | 0.3867 | 0.3868 |
+| network, level 1 | network-derived | 0.4033 | 0.4030 | 0.4032 |
+
+With the offset present, the hard sector partition (16) did not give a consistent gain over one output matrix: the
+mean paired difference was 0.12–0.47% in the six geometric-trained configurations (lower RMSE in
+3–5 of six runs) and in the network-trained ones one output matrix was lower by 0.23–0.59%. Fuzzy rules (radial sigmoid × von Mises
+angular kernel, fuzzy-weighted RLS; the hard partition is the limit of large slopes) reduced RMSE relative to one
+output matrix by 0.55–1.17% in the geometric-trained configurations (95% bootstrap intervals
+below zero in all six, lower RMSE in 4–6 of six runs) and did not change it in the network-trained ones
+(differences of 0.07–0.09% in favour of one output matrix). The two-time-scale refinement had a 1.76–2.90% lower RMSE than sector RLS with an intercept (hidden state
+augmented by a unit component) and a single forgetting factor in all six geometric-trained configurations (six of
+six runs, `paired_adaptation.csv`), so the offset is not equivalent to an intercept refined with the slow forgetting
+factor.
+
+## Changes in version 1.1.0
+
+1. `summarize_adaptation.py`: in v1.0.0 the columns `global` and `offset` of `summary_adaptation.csv` were taken with the
+   forgetting factor selected on the shifted validation part (rule `shift`), whereas the paired statistics and the
+   column `sector_stat` used the stationary validation part (rule `stat`). All procedures now use the rule `stat`
+   (columns `*_stat`); the rule `shift` is kept in separate columns `*_shift`. Global RLS with the rule `stat`:
+   0.3220, 0.4091, 0.4672 (level 1; v1.0.0 showed 0.3194, 0.4009, 0.4537).
+   The raw result tables `results_adaptation*.csv` are unchanged.
+2. `paired_adaptation.csv`: new comparison «two-scale vs sector RLS with intercept».
+3. New follow-up experiment `adapt_experiment4.py` (Table 3 above); its control procedure «hard sectors + offset»
+   reproduces `sector_two` of `results_adaptation2.csv` exactly.
 
 ## Formal check of the expressions
 

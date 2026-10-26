@@ -1,0 +1,178 @@
+{
+ "A_geometric_multi": {
+  "two_hard": {
+   "lam": 0.999,
+   "g_r": null,
+   "kappa": null
+  },
+  "global_two": {
+   "lam": 0.999,
+   "g_r": null,
+   "kappa": null
+  },
+  "fuzzy_rls": {
+   "lam": 0.995,
+   "g_r": 6.0,
+   "kappa": 4.0
+  },
+  "fuzzy_two": {
+   "lam": 0.995,
+   "g_r": 6.0,
+   "kappa": 4.0
+  }
+ },
+ "A_geometric_single": {
+  "two_hard": {
+   "lam": 0.999,
+   "g_r": null,
+   "kappa": null
+  },
+  "global_two": {
+   "lam": 1.0,
+   "g_r": null,
+   "kappa": null
+  },
+  "fuzzy_rls": {
+   "lam": 1.0,
+   "g_r": 20.0,
+   "kappa": 4.0
+  },
+  "fuzzy_two": {
+   "lam": 0.999,
+   "g_r": 6.0,
+   "kappa": 1.0
+  }
+ },
+ "A_network_multi": {
+  "two_hard": {
+   "lam": 0.995,
+   "g_r": null,
+   "kappa": null
+  },
+  "global_two": {
+   "lam": 0.999,
+   "g_r": null,
+   "kappa": null
+  },
+  "fuzzy_rls": {
+   "lam": 0.999,
+   "g_r": 20.0,
+   "kappa": 4.0
+  },
+  "fuzzy_two": {
+   "lam": 0.995,
+   "g_r": 20.0,
+   "kappa": 4.0
+  }
+ },
+ "A_network_single": {
+  "two_hard": {
+   "lam": 0.995,
+   "g_r": null,
+   "kappa": null
+  },
+  "global_two": {
+   "lam": 0.999,
+   "g_r": null,
+   "kappa": null
+  },
+  "fuzzy_rls": {
+   "lam": 0.995,
+   "g_r": 6.0,
+   "kappa": 4.0
+  },
+  "fuzzy_two": {
+   "lam": 0.99,
+   "g_r": 6.0,
+   "kappa": 1.0
+  }
+ },
+ "B_geometric_multi": {
+  "two_hard": {
+   "lam": 0.999,
+   "g_r": null,
+   "kappa": null
+  },
+  "global_two": {
+   "lam": 0.999,
+   "g_r": null,
+   "kappa": null
+  },
+  "fuzzy_rls": {
+   "lam": 0.995,
+   "g_r": 2.0,
+   "kappa": 4.0
+  },
+  "fuzzy_two": {
+   "lam": 0.995,
+   "g_r": 2.0,
+   "kappa": 4.0
+  }
+ },
+ "B_geometric_single": {
+  "two_hard": {
+   "lam": 0.999,
+   "g_r": null,
+   "kappa": null
+  },
+  "global_two": {
+   "lam": 0.999,
+   "g_r": null,
+   "kappa": null
+  },
+  "fuzzy_rls": {
+   "lam": 0.999,
+   "g_r": 6.0,
+   "kappa": 4.0
+  },
+  "fuzzy_two": {
+   "lam": 0.995,
+   "g_r": 2.0,
+   "kappa": 4.0
+  }
+ },
+ "B_network_multi": {
+  "two_hard": {
+   "lam": 0.995,
+   "g_r": null,
+   "kappa": null
+  },
+  "global_two": {
+   "lam": 0.999,
+   "g_r": null,
+   "kappa": null
+  },
+  "fuzzy_rls": {
+   "lam": 0.99,
+   "g_r": 2.0,
+   "kappa": 1.0
+  },
+  "fuzzy_two": {
+   "lam": 0.99,
+   "g_r": 2.0,
+   "kappa": 1.0
+  }
+ },
+ "B_network_single": {
+  "two_hard": {
+   "lam": 0.999,
+   "g_r": null,
+   "kappa": null
+  },
+  "global_two": {
+   "lam": 0.999,
+   "g_r": null,
+   "kappa": null
+  },
+  "fuzzy_rls": {
+   "lam": 0.995,
+   "g_r": 6.0,
+   "kappa": 1.0
+  },
+  "fuzzy_two": {
+   "lam": 0.99,
+   "g_r": 6.0,
+   "kappa": 1.0
+  }
+ }
+}

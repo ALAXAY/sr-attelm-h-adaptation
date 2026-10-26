@@ -15,9 +15,15 @@ idx = [(f, c, r) for f in ('geometric', 'network') for c in ('multi', 'single') 
 S = pd.DataFrame(index=pd.MultiIndex.from_tuples(idx, names=['family', 'coverage', 'regime']))
 locf = p1[p1['mode'] == 'LOCF'].set_index('regime')['RMSE']
 S['LOCF'] = [locf[r] for (_, _, r) in idx]
-for col, (m, ru) in {'frozen': ('frozen', '-'), 'sector': ('sector', 'shift'), 'global': ('global', 'shift'), 'offset': ('bias', 'shift'),
-                     'sector_stat': ('sector', 'stat')}.items(): S[col] = pick(p1, m, ru)
-for col, (m, ru) in {'two_scale': ('sector_two', 'stat'), 'two_scale_shift': ('sector_two', 'shift'), 'sector_ic': ('sector_ic', 'shift')}.items(): S[col] = pick(p2, m, ru)
+# All procedures of the main comparison use the declared rule 'stat' (forgetting factor selected on the stationary
+# validation part); the rule 'shift' (validation part with a doubled mean delay) is kept in separate *_shift columns.
+# v1.0.0 mixed the rules (global RLS and offset-only columns were taken with 'shift', the paired tests with 'stat').
+for col, (m, ru) in {'frozen': ('frozen', '-'), 'sector_stat': ('sector', 'stat'), 'global_stat': ('global', 'stat'),
+                     'offset_stat': ('bias', 'stat'), 'sector_shift': ('sector', 'shift'),
+                     'global_shift': ('global', 'shift'), 'offset_shift': ('bias', 'shift')}.items(): S[col] = pick(p1, m, ru)
+for col, (m, ru) in {'two_scale': ('sector_two', 'stat'), 'two_scale_shift': ('sector_two', 'shift'),
+                     'sector_ic_stat': ('sector_ic', 'stat'), 'global_ic_stat': ('global_ic', 'stat'),
+                     'sector_ic_shift': ('sector_ic', 'shift')}.items(): S[col] = pick(p2, m, ru)
 S.to_csv('summary_adaptation.csv')
 allr = pd.concat([d1, d2], ignore_index=True)
 def runs(fam, cov, reg, mode, rule):
@@ -33,7 +39,8 @@ def paired(fam, cov, reg, a, b, seed=0):
 comps = [(('sector_two', 'stat'), ('frozen', '-'), 'two-scale vs frozen'), (('sector_two', 'stat'), ('sector', 'stat'), 'two-scale vs sector RLS'),
          (('sector_two', 'stat'), ('bias', 'stat'), 'two-scale vs offset only'), (('sector', 'stat'), ('frozen', '-'), 'sector RLS vs frozen'),
          (('bias', 'stat'), ('frozen', '-'), 'offset only vs frozen'), (('sector', 'stat'), ('global', 'stat'), 'sector RLS vs global RLS'),
-         (('sector_two', 'stat'), ('global', 'stat'), 'two-scale vs global RLS')]
+         (('sector_two', 'stat'), ('global', 'stat'), 'two-scale vs global RLS'),
+         (('sector_two', 'stat'), ('sector_ic', 'stat'), 'two-scale vs sector RLS with intercept')]
 rows = []
 for fam, cov, reg in idx:
     for a, b, lab in comps:
